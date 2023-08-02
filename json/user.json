@@ -1,0 +1,14 @@
+{
+	"firstname": "Mohit",
+	"lastname": "Khare",
+	"id": "mkfeuhrer",
+	"age": "24",
+	"gender": "male",
+	"preferred_topics": ["startups", "books", "chess", "blogging"],
+	"social_links": [
+	  {
+		"site": "twitter",
+		"url": "https://twitter.com/mkfeuhrer"
+	  }
+	]
+} 
