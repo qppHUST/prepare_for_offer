@@ -19,6 +19,7 @@ func runServer() {
 		Addr:    ":9999",
 		Handler: handler,
 	}
+	gin.Recovery()
 	if err := server.ListenAndServe(); err != nil {
 		log.Fatalln(err)
 	}

@@ -1,7 +1,9 @@
 package leetcode
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"testing"
 )
 
@@ -159,20 +161,306 @@ func TestCombine(t *testing.T) {
 
 func TestExist(t *testing.T) {
 	ans := exist([][]byte{
-		[]byte{'A', 'B', 'C', 'E'},
-		[]byte{'S', 'F', 'C', 'S'},
-		[]byte{'A', 'D', 'E', 'E'},
+		{'A', 'B', 'C', 'E'},
+		{'S', 'F', 'C', 'S'},
+		{'A', 'D', 'E', 'E'},
 	}, "ABCCED")
 	fmt.Println(ans)
 }
 
 func TestNumIslands(t *testing.T) {
 	grid := [][]byte{
-		[]byte{'1', '1', '0', '0', '0'},
-		[]byte{'1', '1', '0', '0', '0'},
-		[]byte{'0', '0', '1', '0', '0'},
-		[]byte{'0', '0', '0', '1', '1'},
+		{'1', '1', '0', '0', '0'},
+		{'1', '1', '0', '0', '0'},
+		{'0', '0', '1', '0', '0'},
+		{'0', '0', '0', '1', '1'},
 	}
 	ans := numIslands(grid)
 	fmt.Println(ans)
+}
+
+func TestSolveNQueens(t *testing.T) {
+	ans := solveNQueens(4)
+	fmt.Println(len(ans))
+	for index, itemlist := range ans {
+		fmt.Println("第 : ", index)
+		for _, item := range itemlist {
+			fmt.Println(item)
+		}
+	}
+}
+
+func TestClimbStairs(t *testing.T) {
+	ans := climbStairs(44)
+	fmt.Println(ans)
+}
+
+func TestMinPathSum(t *testing.T) {
+	// grid1 := [][]int{
+	// 	[]int{1, 3, 1},
+	// 	[]int{1, 5, 1},
+	// 	[]int{4, 2, 1},
+	// }
+	grid2 := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+	}
+	ans := minPathSum(grid2)
+	fmt.Println(ans)
+}
+
+func TestIntegerBreak(t *testing.T) {
+	ans := integerBreak(10)
+	fmt.Println(ans)
+}
+
+func TestNumSquares(t *testing.T) {
+	ans := numSquares(26)
+	fmt.Println(ans)
+}
+
+func TestUniquePaths(t *testing.T) {
+	ans := uniquePaths(3, 7)
+	fmt.Println(ans)
+}
+
+func TestCalculateMaxTotalYie(t *testing.T) {
+	field := [][]int32{
+		{2, 3, 1, 4},
+		{1, 2, 0, 3},
+		{4, 2, 1, 7},
+		{3, 1, 4, 2},
+	}
+	ans := calculateMaxTotalYie(4, 4, field)
+	fmt.Println(ans)
+}
+
+func TestRob(t *testing.T) {
+	nums := []int{1, 2, 3, 1}
+	ans := rob(nums)
+	fmt.Println(ans)
+}
+
+func TestReverse(t *testing.T) {
+	ans := reverse(233)
+	fmt.Println(ans)
+}
+
+func TestLongestCommonPrefix(t *testing.T) {
+	// strs := []string{"flower", "flow", "flight"}
+	strs1 := []string{"", ""}
+	ans := longestCommonPrefix(strs1)
+	fmt.Println(ans)
+}
+
+func TestSwapPairs(t *testing.T) {
+	node1 := &ListNode{Val: 1}
+	node2 := &ListNode{Val: 2}
+	node3 := &ListNode{Val: 3}
+	node4 := &ListNode{Val: 4}
+	node1.Next = node2
+	node2.Next = node3
+	node3.Next = node4
+	ans := swapPairs(node1)
+	for ans != nil {
+		fmt.Println(ans.Val)
+		ans = ans.Next
+	}
+}
+
+func TestCanPartion(t *testing.T) {
+	// nums1 := []int{1, 5, 11, 5}
+	// nums2 := []int{1, 2, 3, 5}
+	nums3 := []int{3, 3, 3, 4, 5}
+	fmt.Println(canPartition(nums3))
+}
+
+func TestFilePathParser(t *testing.T) {
+	// str1 := "/mnt/home/someone/../log"
+	str2 := "/mnt/../mnt/engine/log/.."
+	ans := filePathParse(str2)
+	fmt.Println(ans)
+}
+
+func TestPrintAbc(t *testing.T) {
+	printAbc()
+}
+
+func TestStrDesensitization(t *testing.T) {
+	str1 := "abc"
+	str2 := "中国ab"
+	str3 := "这个是测试地址abc"
+	ans1 := strDesensitization(str1)
+	ans2 := strDesensitization(str2)
+	ans3 := strDesensitization(str3)
+	fmt.Println(ans1)
+	fmt.Println(ans2)
+	fmt.Println(ans3)
+}
+
+func TestLenovoTest1(t *testing.T) {
+	lenovoTest1()
+}
+
+func TestLilisi1(t *testing.T) {
+	lilisiTest1()
+}
+
+func TestReverseKGroup(t *testing.T) {
+	// node5 := &ListNode{Val: 5, Next: nil}
+	// node4 := &ListNode{Val: 4, Next: node5}
+	// node3 := &ListNode{Val: 3, Next: }
+	node2 := &ListNode{Val: 2, Next: nil}
+	node1 := &ListNode{Val: 1, Next: node2}
+	newHead := reverseKGroup(node1, 2)
+	for newHead != nil {
+		fmt.Println(newHead.Val)
+		newHead = newHead.Next
+	}
+}
+
+func TestRemoveDuplicates(t *testing.T) {
+	nums := []int{1, 2, 3}
+	k := removeDuplicates(nums)
+	for i := 0; i < k; i++ {
+		fmt.Println(nums[i])
+	}
+}
+
+func TestRemoveDuplicates2(t *testing.T) {
+	nums := []int{1, 1, 1, 2, 2, 3}
+	k := removeDuplicates2(nums)
+	for i := 0; i < k; i++ {
+		fmt.Print(nums[i], " ")
+	}
+}
+
+func TestRotate(t *testing.T) {
+	nums := []int{1, 2, 3, 4, 5, 6, 7}
+	rotate(nums, 3)
+	fmt.Println(nums)
+}
+
+func TestMaxProfit(t *testing.T) {
+	prices := []int{7, 1, 5, 3, 6, 4}
+	ans := maxProfit(prices)
+	fmt.Println(ans)
+}
+
+func TestCanJump(t *testing.T) {
+	nums := []int{3, 2, 1, 0, 4}
+	fmt.Println(canJump(nums))
+}
+
+func TestTaoTianTest1(t *testing.T) {
+	taoTianTest1()
+}
+
+func TestSortColor(t *testing.T) {
+	list := []int{2, 0, 2, 1, 1, 0}
+	sortColors(list)
+	for _, i := range list {
+		fmt.Println(i)
+	}
+}
+
+func TestFree(t *testing.T) {
+	head := &ListNode{
+		Val:  0,
+		Next: nil,
+	}
+	a := &ListNode{
+		Val:  1,
+		Next: nil,
+	}
+	b := &ListNode{
+		Val:  2,
+		Next: nil,
+	}
+	helper := a
+	head.Next = a
+	a.Next = b
+	*a = *b
+	fmt.Printf("%p\n", a)
+	fmt.Printf("%p\n", b)
+	fmt.Printf("%p\n", helper)
+	fmt.Println(".............")
+	fmt.Println(a.Val)
+	fmt.Println(b.Val)
+	fmt.Println(".............")
+	fmt.Println(a.Next)
+	fmt.Println(b.Next)
+}
+
+func TestTypeSwitch(t *testing.T) {
+
+}
+
+func TestLru(t *testing.T) {
+	lruMem := &lru{
+		list: map[int]int{},
+		cap:  3,
+		num:  0,
+	}
+	lruMem.use(10)
+	lruMem.use(10)
+	lruMem.use(11)
+	lruMem.use(12)
+	lruMem.use(11)
+	lruMem.use(14)
+	fmt.Println(lruMem)
+}
+
+func TestCopy(t *testing.T) {
+	arr1 := []int{1, 1, 1, 1, 1, 1, 1}
+	arr2 := []int{2, 2, 2}
+	copy(arr1[2:5], arr2)
+	fmt.Println(arr1)
+}
+
+func TestGaoTu1(t *testing.T) {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println(reader.ReadString('\n'))
+}
+
+func TestNumKLenSubstrRepeats(t *testing.T) {
+	ans := numKLenSubstrRepeats("createfunonyoka", 4)
+	fmt.Println(ans)
+}
+
+func TestRepeatedDNA(t *testing.T) {
+	ans := repeatedDNA("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")
+	fmt.Println(ans)
+}
+
+func TestQuickSort(t *testing.T) {
+	arr := []int{5, 6, 5, 4, 9, 200, 103, -2, 8, 5, 5, 5, 7}
+	quickSort(arr)
+	fmt.Println(arr)
+}
+
+func TestFree1(t *testing.T) {
+	var nums []int
+	print(nums[10])
+}
+
+func TestPanic(t *testing.T) {
+	defer func() {
+		if err := recover(); err != nil {
+			switch err.(type) {
+			case ErrorA:
+				fmt.Println("errora")
+				break
+			case ErrorB:
+				fmt.Println("errorb")
+				break
+			}
+
+		}
+	}()
+
+	panic(ErrorA{name: "aaaa"})
+}
+
+func TestAfterFunc(t *testing.T) {
 }

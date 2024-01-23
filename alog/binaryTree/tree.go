@@ -67,37 +67,57 @@ func postorderTraversal(root *TreeNode) (res []int) {
 }
 
 // 使用栈模拟递归
-func preorderTraversalWithStack(root *TreeNode) (vals []int) {
+func TraversalWithStack(root *TreeNode) (vals []int) {
 	if root == nil {
 		return []int{}
 	}
-	stack := []node{}
-	head := root
-	for {
-		if len(stack) == 0 {
-			stack = append(stack, node{TreeNode: head, flag: false})
-			continue
-		}
+	stack := []node{{
+		TreeNode: root, flag: false,
+	}}
+	for len(stack) > 0 {
 		item := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 		if !item.flag {
-			node1 := node{TreeNode: item.TreeNode, flag: true}
-			node2 := node{TreeNode: item.Left, flag: false}
-			node3 := node{TreeNode: item.Right, flag: false}
+			node1 := node{TreeNode: item.TreeNode, flag: true}        //自己
+			node2 := node{TreeNode: item.TreeNode.Left, flag: false}  //左
+			node3 := node{TreeNode: item.TreeNode.Right, flag: false} //右
+
+			//在此处改变入栈的顺序可以实现不同序列
+			//前序
+			//if node3.TreeNode != nil {
+			//	stack = append(stack, node3)
+			//}
+			//if node2.TreeNode != nil {
+			//	stack = append(stack, node2)
+			//}
+			//if node1.TreeNode != nil {
+			//	stack = append(stack, node1)
+			//}
+
+			//中序
+			//if node3.TreeNode != nil {
+			//	stack = append(stack, node3)
+			//}
+			//if node1.TreeNode != nil {
+			//	stack = append(stack, node1)
+			//}
+			//if node2.TreeNode != nil {
+			//	stack = append(stack, node2)
+			//}
+
+			//后序
+			if node1.TreeNode != nil {
+				stack = append(stack, node1)
+			}
 			if node3.TreeNode != nil {
 				stack = append(stack, node3)
 			}
 			if node2.TreeNode != nil {
 				stack = append(stack, node2)
 			}
-			if node1.TreeNode != nil {
-				stack = append(stack, node1)
-			}
+
 		} else {
 			vals = append(vals, item.Val)
-			if len(stack) == 0 {
-				break
-			}
 		}
 	}
 	return vals
