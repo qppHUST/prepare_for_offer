@@ -16,7 +16,7 @@ type lilisipoint struct {
 
 func main() {
 	index := 0
-	boarder := [][]string{}
+	var boarder [][]string
 	reader := bufio.NewReader(os.Stdin)
 	for index < 3 {
 		str, err := reader.ReadString('\n')
